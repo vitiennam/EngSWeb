@@ -10,7 +10,7 @@
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
         <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
-        <script src="jsSource/searchBar.js"></script>
+        <script src="jsSource/searchBar.js" ></script>
         <!-- <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.12.4.js"></script>
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script> -->
@@ -18,24 +18,25 @@
     <body>
         <div>
             <ul class="nav nav-tab">
-                <li class="nav-item">
-                    <a class="nav-link" href="index.html">Search</a>
+                <li class="nav-item col">
+                    <a class="nav-link text-center" href="index.html">Search</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Flash Card</a>
+                <li class="nav-item col">
+                    <a class="nav-link text-center" href="#">Flash Card</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">History</a>
+                <li class="nav-item col">
+                    <a class="nav-link text-center" href="#">History</a>
                 </li>
             </ul>
             
         </div>
         <div class="container">
-            <div class="row divBanner">
-                <div class="col"></div>
-                <h1 class="col" >Search</h1>
-                <div class="col"></div>
+            <div class="container-fluid divBanner">
+                
+                <h1 class="text-center" >Search</h1>
+                
             </div>
+            
             
             <div class="row divSearch">
                 <!-- <input id="searchBarID" class="searchBar" type="text" placeholder="Search"> -->
@@ -45,11 +46,12 @@
             </div>
             
         </div>
+        
         <!-- <script>
             $( "#autocomplete" ).autocomplete({
               source: [ "c++", "java", "php", "coldfusion", "javascript", "asp", "ruby" ]
-            });
+            })
         </script> -->
-        <script></script>
+        
     </body>
 </html>

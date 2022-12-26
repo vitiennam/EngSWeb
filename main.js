@@ -1,2 +1,45 @@
 var http = require('http')
-const fsPromises = require('fs/promises');
+const fs = require('fs');
+
+var filePath = "content/data/EWords446k.json"
+let rawData = fs.readFileSync(filePath)
+
+var listWordEng = JSON.parse(rawData)
+console.log("End read file")
+
+http.createServer( function(req, res) {
+    console.log(req.url )
+    if(req.url == "jsSource/searchBar.js") {
+        
+            
+        // let searchBarjsfile = fs.readFileSync(req.url)
+        fs.readFile('content/jsSource/searchBar.js', 'utf8', (err, data) => {
+            if (err) {
+            console.error(err);
+            return;
+            }
+            res.writeHead(200, {'Content-Type': 'text/javascript'})
+            res.write(data);
+            res.end();
+            // console.log(data);
+
+        })
+        
+    } 
+    if(req.url == '/' || req.url == '/index.html') {
+        
+        fs.readFile("./index.html", function(err, data){
+            
+            res.writeHead(200, {'Content-Type': 'text/html'})
+            res.write(data)
+            res.end
+        })
+        
+    }
+    
+    
+    
+        
+        
+    
+} ).listen(8080)
