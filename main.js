@@ -33,7 +33,7 @@ http.createServer( function(req, res) {
         console.log(searchedWord)
         var urlSearchOxford = "https://www.oxfordlearnersdictionaries.com/definition/american_english/"+ searchedWord+ "?q="+ searchedWord
         var urlSearchCam = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchedWord
-        var pageSearch = `<div>`
+
         
         console.log(urlSearchOxford)
         

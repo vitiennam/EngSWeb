@@ -46,10 +46,10 @@
   .tab button.active {
     background-color: #ccc;
   }
-  .iframe {
+  /* .iframe {
       width: 100% !important;
-   
-  }
+      height: 1000px;
+  } */
 /* #gb {
     position: relative !important;
 
