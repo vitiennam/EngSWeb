@@ -1,7 +1,7 @@
 var http = require('http')
 const https = require('node:https');
 const fs = require('fs');
-const { stringify } = require('querystring');
+const axios = require('axios')
 // const express = require('express'); 
 
 
@@ -11,35 +11,88 @@ const { stringify } = require('querystring');
 var filePathData = "content/data/EWords2.json"
 var indexHtmlpath = 'content/index.html'
 var searchBarJSPath = 'content/jsSource/searchBar.js'
-
+var cssIndexPath = 'content/css/index.css'
 
 let indexHtml = fs.readFileSync(indexHtmlpath)
 let searchBarjsfile = fs.readFileSync(searchBarJSPath)
 let rawData = fs.readFileSync(filePathData)
+let cssIndexFile = fs.readFileSync(cssIndexPath)
 var listWordEng = JSON.parse(rawData)
+async function fetch_sync(urlSearch)
+{
+	const resp = await fetch(urlSearch)
 
+	return resp
+}
 console.log("End read file")
 http.createServer( function(req, res) {
     console.log(req.url )
-    if (req.url.includes('queryWord')) {
-        console.log(req.url.includes('queryWord'))
+    if (req.url.includes('queryWordO')) {
+        console.log(req.url.includes('queryWordO'))
         var searchedWord = req.url.split("=")[1]
         console.log(searchedWord)
-        var urlSearch = "https://www.oxfordlearnersdictionaries.com/definition/american_english/"+ searchedWord+ "?q="+ searchedWord
-        console.log(urlSearch)
-        const reqw = https.request(urlSearch, (resw) => {
-            console.log('statusCode:', resw.statusCode);
-            console.log('headers:', resw.headers);
+        var urlSearchOxford = "https://www.oxfordlearnersdictionaries.com/definition/american_english/"+ searchedWord+ "?q="+ searchedWord
+        var urlSearchCam = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchedWord
+        var pageSearch = `<div>`
         
-            resw.on('data', (d) => {
-            process.stdout.write(d);
-            console.log("data "+ String(d))
+        console.log(urlSearchOxford)
+        
+        try {
+            axios(urlSearchOxford).then((response) => {
+              
+            //   console.log(html);
+            res.writeHead(200, {'Content-Type': 'text/html'})
+            res.end(response.data)
+            // pageSearch += `<div class="col">` + response.data + `</div>`
             });
+          } catch (error) {
+            console.log(error, error.message);
+          }
+
+    }
+    if (req.url.includes('queryWordC')) {
+        console.log(req.url.includes('queryWordC'))
+        var searchedWord = req.url.split("=")[1]
+        console.log(searchedWord)
+        var urlSearchCam = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchedWord
+       
         
-        }).on('error', (e) => {
-            console.error(e);
-        });
-        console.log('reqw: '+stringify(reqw))
+        console.log(urlSearchCam)
+        
+        try {
+            axios(urlSearchCam).then((response) => {
+              
+            //   console.log(html);
+            res.writeHead(200, {'Content-Type': 'text/html'})
+            res.end(response.data)
+            // pageSearch += `<div class="col">` + response.data + `</div>`
+            });
+          } catch (error) {
+            console.log(error, error.message);
+          }
+
+    }
+    if (req.url.includes('queryWordGG')) {
+        console.log(req.url.includes('queryWordGG'))
+        var searchedWord = req.url.split("=")[1]
+        console.log(searchedWord)
+        var urlSearchGG = "https://translate.google.com/?hl=vi&sl=en&tl=vi&text="+searchedWord+"&op=translate"
+       
+        
+        console.log(urlSearchGG)
+        
+        try {
+            axios(urlSearchGG).then((response) => {
+              
+            //   console.log(html);
+            res.writeHead(200, {'Content-Type': 'text/html'})
+            res.end(response.data)
+            // pageSearch += `<div class="col">` + response.data + `</div>`
+            });
+          } catch (error) {
+            console.log(error, error.message);
+          }
+
     }
     switch(req.url) {
         case '/jsSource/searchBar.js':
@@ -71,6 +124,10 @@ http.createServer( function(req, res) {
         case '/engDataSearch':
             // res.write(rawData)
             res.end(JSON.stringify(listWordEng))
+            break
+        case '/css/index.css':
+            res.writeHead(200,{'Content-Type': 'text/css'})
+            res.end(cssIndexFile)
             break
 
     }

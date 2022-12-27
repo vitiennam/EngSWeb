@@ -8,6 +8,7 @@
         <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
         <script src="//code.jquery.com/jquery-1.12.4.js"></script>
         <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+        <link rel="stylesheet" href="css/index.css">
         <!-- <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js" integrity="sha256-xLD7nhI62fcsEZK2/v8LsBcb4lG7dgULkuXoXB/j91c=" crossorigin="anonymous"></script>
         <script src="https://code.jquery.com/jquery-3.6.3.js" integrity="sha256-nQLuAZGRRcILA+6dMBOvcRh5Pe310sBpanc6+QBmyVM=" crossorigin="anonymous"></script> -->
         
@@ -35,7 +36,7 @@
                 
                 <h1 class="text-center" >Search</h1>
                 <p id="testOut"></p>
-                <div id="SearchContent" class="container-fluid"></div>
+                
                 
             </div>
             
@@ -44,6 +45,38 @@
                 <!-- <input id="searchBarID" class="searchBar" type="text" placeholder="Search"> -->
                 <label for="autocomplete"></label>
                 <input id="autocomplete">
+                
+            </div>
+            <div id="SearchContent" class="container">
+                <!-- <div class="row">
+                    <div class="container">
+                        <div id="SearchContentO" class="col-lg-4"></div>
+                    </div>
+                    
+                    <div id="SearchContentC" class="col-lg-4"></div>
+                    <div id="SearchContentGG" class="col-lg-4"></div>
+                </div> -->
+                <iframe class="iframe" src="https://dictionary.cambridge.org/dictionary/english-vietnamese/pack" height="pixels"></iframe>
+
+                <div class="tab" id="tabSeach">
+                    <button class="tablinks" onclick="openSearchContent(event, 'SearchContentO')">Oxford</button>
+                    <button class="tablinks" onclick="openSearchContent(event, 'SearchContentC')">Cambrigde</button>
+                    <!-- <button class="tablinks" onclick="openSearchContent(event, 'SearchContentGG')">GG</button> -->
+                  </div>
+                  <div id="SearchContentO" class="tabcontent">
+                    
+                  </div>
+                  
+                  <div id="SearchContentC" class="tabcontent">
+                    
+                  </div>
+                  
+                  <!-- <div id="SearchContentGG" class="tabcontent">
+                    
+                  </div> -->
+               
+                
+                </div>
                 
             </div>
             
