@@ -1,6 +1,6 @@
 
 var engDataSearch
-var linkCam
+
 $.get("engDataSearch", function(data, status){
     // alert("Data: "  + "\nStatus: " + status);
     
@@ -22,7 +22,7 @@ $.get("engDataSearch", function(data, status){
             console.log("SearchContentO display " + document.getElementById('SearchContentO').style.display)
             break
         case 'SearchContentC':
-            document.getElementById('SearchContentIframe').src = linkCam
+            // document.getElementById('SearchContentIframe').src = linkCam
             document.getElementById('SearchContentO').style.display = 'none'
             document.getElementById('divIframeSeach').style.display = 'block'
             document.getElementById('SearchContentIframe').style.width = '100%'
@@ -61,7 +61,8 @@ $( "#autocomplete" ).autocomplete({
         // document.getElementById('SearchContentIframe').src = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + ui.item.value
         // document.getElementById('SearchContentIframe').style.width = '0%'
         // document.getElementById('SearchContentIframe').style.height = '0%'
-        linkCam = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + ui.item.value
+        document.getElementById('SearchContentIframe').src = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + ui.item.value
+        document.getElementById('divIframeSeach').style.display = 'none'
         // document.getElementById('SearchContentO').attributes.source = "https://www.oxfordlearnersdictionaries.com/definition/american_english/"+ ui.item.value+ "?q="+ ui.item.value
         // console.log("link source " +String( document.getElementById('SearchContentO').attributes))
         // document.getElementById('SearchContentC').attributes.source = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + ui.item.value
