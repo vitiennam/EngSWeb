@@ -12,11 +12,16 @@ var filePathData = "content/data/EWords2.json"
 var indexHtmlpath = 'content/index.html'
 var searchBarJSPath = 'content/jsSource/searchBar.js'
 var cssIndexPath = 'content/css/index.css'
+var flashCardhtml = 'content/flash_card.html'
+var flashCardJS = 'content/jsSource/flashCard.js'
 
 let indexHtml = fs.readFileSync(indexHtmlpath)
 let searchBarjsfile = fs.readFileSync(searchBarJSPath)
 let rawData = fs.readFileSync(filePathData)
 let cssIndexFile = fs.readFileSync(cssIndexPath)
+let flashCardhtmlfile = fs.readFileSync(flashCardhtml)
+let flashCardJSFile = fs.readFileSync(flashCardJS)
+
 var listWordEng = JSON.parse(rawData)
 async function fetch_sync(urlSearch)
 {
@@ -128,6 +133,17 @@ http.createServer( function(req, res) {
         case '/css/index.css':
             res.writeHead(200,{'Content-Type': 'text/css'})
             res.end(cssIndexFile)
+            break
+        case '/flash_card.html':
+            res.writeHead(200,{'Content-Type': 'text/html'})
+            res.end(flashCardhtmlfile)
+            break
+        case '/jsSource/flashCard.js':
+            res.writeHead(200,{'Content-Type': 'text/javascript'})
+            res.end(flashCardJSFile)
+            break
+        case '/randomWord':
+            res.end(listWordEng[Math.floor(Math.random() * listWordEng.length)])
             break
 
     }
