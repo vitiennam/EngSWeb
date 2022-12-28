@@ -1,12 +1,8 @@
-var searchWordRandom
+var searchWord
 var cookieThis = getCookie('thisUser')
 console.log("cookie log " + cookieThis)
 var userHistory = cookieThis.split(',')
-$.get("randomWord", function(data, status){
-    console.log(data)
-    document.getElementById('buttonFC').innerHTML = data
-    searchWordRandom = data
-})
+
 function setCookie(cname, cvalue, exdays) {
     const d = new Date();
     d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
@@ -28,6 +24,10 @@ function setCookie(cname, cvalue, exdays) {
     }
     return "";
   }
+
+userHistory.forEach(element => {
+    $("#listHistory").append("<button type=\"button\" class=\"list-group-item list-group-item-action buttonHisClass\" id=\"buttonHis\">"+element+"</button>")
+});
 function openSearchContent(evt, searchTabName) {
     var i, tabcontent, tablinks;
     console.log("searchTabName " + searchTabName)
@@ -61,20 +61,32 @@ function openSearchContent(evt, searchTabName) {
     // document.getElementById(searchTabName).style.display = "block";
     evt.currentTarget.className += " active";
   }
+$(".buttonHisClass").click(function (e) { 
+    searchWord = jQuery(this).text();
 
-$("#buttonFC").click(function (e) { 
     e.preventDefault();
+    var btnHis = document.getElementsByClassName("buttonHisClass");
+    for (i = 0; i < btnHis.length; i++) {
+        btnHis[i].className = btnHis[i].className + " disabled";
+      }
+
     document.getElementById('tabSeach').style.display = 'block'
-    document.getElementById('SearchContentIframe').src = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchWordRandom
+    document.getElementById('SearchContentIframe').src = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchWord
     document.getElementById('divIframeSeach').style.display = 'none'
-    userHistory.push(searchWordRandom)
-    setCookie('thisUser',userHistory,30)
-    $.get("queryWordO="+searchWordRandom, function(datahtml, statushtml){
+
+    $.get("queryWordO="+searchWord, function(datahtml, statushtml){
         // alert("\nStatus: " + statushtml);
         // data.getElementById('ad_leftslot_container').remove
         if(statushtml == 'success'){
             document.getElementById('SearchContentO').innerHTML = datahtml
+            document.getElementById('ad_leftslot_container').style.display = 'none'
+            var btnHis = document.getElementsByClassName("buttonHisClass");
+            for (i = 0; i < btnHis.length; i++) {
+                btnHis[i].className = btnHis[i].className.replace(" disabled", "");
+              }
         }
-        // document.getElementById('ad_leftslot_container').remove
-      });
+        
+      })
+    
 });
+

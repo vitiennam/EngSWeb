@@ -2,6 +2,7 @@ var http = require('http')
 const https = require('node:https');
 const fs = require('fs');
 const axios = require('axios')
+
 // const express = require('express'); 
 
 
@@ -14,6 +15,8 @@ var searchBarJSPath = 'content/jsSource/searchBar.js'
 var cssIndexPath = 'content/css/index.css'
 var flashCardhtml = 'content/flash_card.html'
 var flashCardJS = 'content/jsSource/flashCard.js'
+var historyHtml = 'content/history.html'
+var historyJS = 'content/jsSource/history.js'
 
 let indexHtml = fs.readFileSync(indexHtmlpath)
 let searchBarjsfile = fs.readFileSync(searchBarJSPath)
@@ -21,6 +24,8 @@ let rawData = fs.readFileSync(filePathData)
 let cssIndexFile = fs.readFileSync(cssIndexPath)
 let flashCardhtmlfile = fs.readFileSync(flashCardhtml)
 let flashCardJSFile = fs.readFileSync(flashCardJS)
+let historyHtmlFile = fs.readFileSync(historyHtml)
+let historyJSFile = fs.readFileSync(historyJS)
 
 var listWordEng = JSON.parse(rawData)
 async function fetch_sync(urlSearch)
@@ -37,7 +42,7 @@ http.createServer( function(req, res) {
         var searchedWord = req.url.split("=")[1]
         console.log(searchedWord)
         var urlSearchOxford = "https://www.oxfordlearnersdictionaries.com/definition/american_english/"+ searchedWord+ "?q="+ searchedWord
-        var urlSearchCam = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchedWord
+        // var urlSearchCam = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchedWord
 
         
         console.log(urlSearchOxford)
@@ -51,7 +56,9 @@ http.createServer( function(req, res) {
             // pageSearch += `<div class="col">` + response.data + `</div>`
             });
           } catch (error) {
-            console.log(error, error.message);
+            // console.log(error, error.message);
+            res.writeHead(404)
+            res.end()
           }
 
     }
@@ -141,6 +148,14 @@ http.createServer( function(req, res) {
         case '/jsSource/flashCard.js':
             res.writeHead(200,{'Content-Type': 'text/javascript'})
             res.end(flashCardJSFile)
+            break
+        case '/history.html':
+            res.writeHead(200,{'Content-Type': 'text/html'})
+            res.end(historyHtmlFile)
+            break
+        case '/jsSource/history.js':
+            res.writeHead(200,{'Content-Type': 'text/javascript'})
+            res.end(historyJSFile)
             break
         case '/randomWord':
             res.end(listWordEng[Math.floor(Math.random() * listWordEng.length)])
