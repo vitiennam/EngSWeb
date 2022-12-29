@@ -1,15 +1,15 @@
 <div align="center">
-  <img src="image_logo/logo_git.PNG">
+  <img src="image_logo/logo_git.PNG" style="width=30%; height=30%">
 </div>
 
 Hi, This is English App
 
-Feature:
+# Feature:
 * Search English word and show meaning on 3 website: Oxford, Cambrigde, Google Translate (work on IOS)
 * Flash Card
 * Save your history seached word
 
-This App have 3 versions on 3 devices:
+# This App have 3 versions on 3 devices:
 * [IOS app](https://github.com/vitiennam/EngS)
 * [Android app](https://github.com/vitiennam/EngSAndroid)
 * [Website](https://github.com/vitiennam/EngSWeb)
