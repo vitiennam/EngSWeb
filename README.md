@@ -1,6 +1,6 @@
-<div align="center">
-  <img src="image_logo/logo_git.PNG" style="width=50% !important; height=50%">
-</div>
+
+<img src="image_logo/logo_git.PNG" width="50%">
+
 
 Hi, This is English App
 
