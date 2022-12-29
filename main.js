@@ -42,7 +42,6 @@ http.createServer( function(req, res) {
         var searchedWord = req.url.split("=")[1]
         console.log(searchedWord)
         var urlSearchOxford = "https://www.oxfordlearnersdictionaries.com/definition/american_english/"+ searchedWord+ "?q="+ searchedWord
-        // var urlSearchCam = "https://dictionary.cambridge.org/dictionary/english-vietnamese/" + searchedWord
 
         
         console.log(urlSearchOxford)
@@ -162,32 +161,4 @@ http.createServer( function(req, res) {
             break
 
     }
-    // if(req.url == "/jsSource/searchBar.js") {
-        
-            
-    //     // let searchBarjsfile = fs.readFileSync(req.url)
-    //     fs.readFile('content/jsSource/searchBar.js', 'utf8', (err, data) => {
-    //         if (err) {
-    //         console.error(err);
-    //         return;
-    //         }
-    //         res.writeHead(200, {'Content-Type': 'text/javascript'})
-    //         res.write(data);
-    //         res.end();
-    //         // console.log(data);
-
-    //     })
-        
-    // } 
-    // if(req.url == '/' || req.url == '/index.html') {
-        
-    //     fs.readFile("content/index.html", function(err, data){
-            
-    //         res.writeHead(200, {'Content-Type': 'text/html'})
-    //         res.write(data)
-    //         res.end
-    //     })
-        
-    // }
- 
 } ).listen(8080)
